@@ -1,0 +1,45 @@
+<h1>unko</h1>
+
+<div class="row">
+
+<%= form_for @user do |f| %>
+        <label><%= attachment_image_tag @user, :image, size: "100x100", format: 'jpg', class: "attachment user profile_image fallback", fallback: "no_image.jpg" %></label>
+        <%= f.attachment_field :image, class: "user_image" %>
+        <br>
+
+
+        <label for="name">UserName</label>
+        <%= f.text_field :name, class: "name" %>
+        <br>
+
+        <label for="introduction">Introduction</label>
+        <%= f.text_field :introduction, class: "introduction" %>
+        <br>
+
+        <label for="gender">Gender</label>
+        <%= f.select :gender, User.statuses.keys.to_a, {} %>
+        <br>
+
+        <%= f.label "Height" %>
+        <%= f.number_field :height, min:0, class: 'height' %><span>cm</span>
+        <br>
+
+        <%= f.label "Weight" %>
+        <%= f.number_field :weight, min:0, class: 'weight' %><span>kg</span>
+        <br>
+
+        <div><%= f.submit "情報更新" %><br></div>
+        <% if false %><div><%= link_to "delete", user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></div><% end %>
+    </div>
+<%end%>
+
+
+
+<% if false%>
+    画像のサイズ指定でエラー
+    attachment_image_tag @user,
+    :image, size:"50x50",  ← 「:fill」でなく「size」で指定。（かけるはえっくす）
+    format: 'jpg',
+    class: "attachment user profile_image fallback",
+    fallback: "no_image.jpg"
+<% end %>
