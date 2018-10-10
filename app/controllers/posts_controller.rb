@@ -1,19 +1,22 @@
 class PostsController < ApplicationController
 
     def index
-        @posts = Post.all
+        @user = User.find(params[:user_id])
         @post = Post.new
     end
 
     def show
-        
     end
 
     def create
+        # render plain: params[:post].inspect
         @post = Post.new(post_params)
         @post.user_id = current_user.id
         @post.save
-        redirect_to root_path
+        redirect_to user_posts_path(current_user.id)
+    end
+
+    def destroy
     end
 
     private

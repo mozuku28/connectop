@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'users/index'
-  get 'users/show'
-  root "posts#index"
+  root  'users#index'
 
   devise_for :admins, controllers: {
     sessions:      'admins/sessions',
@@ -16,8 +14,15 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users
-  resources :posts
+  resources :users do
+    resources :follows
+    resources :followers
+    resources :posts
+  end
+
+  post 'users/user_id/posts' => 'post#create', as: "aaa"
+
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
