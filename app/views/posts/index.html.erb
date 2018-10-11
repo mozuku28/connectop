@@ -72,7 +72,10 @@
                         <%= post.body %>
                     </td>
                     <td>
-                        <%= link_to "Show", "#", class: "#" %>
+                        <%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %>
+                    </td>
+                    <td>
+                        <%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
                     </td>
                 </tr>
             <% end %>

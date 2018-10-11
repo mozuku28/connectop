@@ -1,11 +1,13 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
-    @user = current_user
-    @follows = Follow.where(user_id: @user.id)
     @post = Post.new
-    @posts = []
+    @user = current_user
+    @follows = Follow.where(user_id: current_user.id)
+    @users = []
     @follows.each do |f|
-        @posts << Post.find(f.user_id)
+        @users << User.find(f.follow_user_id)
     end
   end
 

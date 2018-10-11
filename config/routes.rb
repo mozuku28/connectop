@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   post 'users/user_id/posts' => 'post#create', as: "aaa"
-
+  post '/users/:user_id/posts/:id' => 'post#destroy', as: "bbb"
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
