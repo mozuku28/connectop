@@ -1,1 +1,16 @@
-<h1>投稿作成用のページ</h1>
+<h2>New post</h2>
+<%= form_for(@post, url: user_posts_path, html: {method: 'POST'}) do |f| %>
+    <div class="field row">
+        <%= f.attachment_field :image, class: "user_image" %>
+    </div>
+    <div class="field row">
+        <label for="memo">memo</label><br>
+        <%= f.text_field :memo, class: "col-xs-12 post_title", id: "post_title" %>
+    </div>
+    <div>
+        <%= link_to "一覧", user_trainings_path %>
+    </div>
+    <div class="actions row">
+        <%= f.submit "Create Post", class: "btn btn-primary col-xs-12" %>
+    </div>
+<% end %>

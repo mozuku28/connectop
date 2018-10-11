@@ -19,6 +19,7 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <% if user_signed_in? %>
+              <li><%= link_to "new", new_user_post_path(current_user.id), class: "glyphicon glyphicon-new new" %>
               <li><%= link_to " Home", user_posts_path(current_user.id), class: "glyphicon glyphicon-home home" %></li>
               <li><%= link_to " Users", user_path(current_user.id), class: "glyphicon glyphicon-user users" %></li>
               <li><%= link_to " Books", "#", class: "glyphicon glyphicon-book books" %></li>

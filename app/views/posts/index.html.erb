@@ -24,7 +24,7 @@
             </div>
             <% end %>
 
-
+<% if false%>
 
             <h2>New post</h2>
             <%= form_for(@post, url: user_posts_path, html: {method: 'POST'}) do |f| %>
@@ -44,7 +44,7 @@
                 </div>
             <% end %>
 
-
+<% end %>
 
     </div>
 
@@ -66,10 +66,7 @@
                         <%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %>
                     </td>
                     <td>
-                        <%= post.title %>
-                    </td>
-                    <td>
-                        <%= post.body %>
+                        <%= post.memo %>
                     </td>
                     <td>
                         <%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %>

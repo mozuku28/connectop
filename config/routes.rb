@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'parts/index'
+  get 'menus/index'
+  get 'loads/index'
+  get 'trainings/index'
   root  'users#index'
 
   devise_for :admins, controllers: {
@@ -18,7 +22,12 @@ Rails.application.routes.draw do
     resources :follows
     resources :followers
     resources :posts
+    resources :trainings
   end
+  
+  resources :menus
+  resources :types
+  resources :parts
 
   post 'users/user_id/posts' => 'post#create', as: "aaa"
   post '/users/:user_id/posts/:id' => 'post#destroy', as: "bbb"

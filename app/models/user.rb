@@ -10,5 +10,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :follow
   has_many :follower
+  has_many :menu
+  has_many :training
 
 end
