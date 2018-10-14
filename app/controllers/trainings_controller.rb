@@ -2,8 +2,19 @@ class TrainingsController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @training = Training.all
+    @trainings = Training.all
+
+    @menus = []
+      @trainings.each do |f|
+        @menus << Menu.find(f.menu_id)
+      end
+
+    menus = Menu.all
   end
+
+
+
+
 
   def new
     @training = Training.new

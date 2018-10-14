@@ -75,10 +75,7 @@
                             <%= attachment_image_tag p, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %>
                         </td>
                         <td>
-                            <%= p.title %>
-                        </td>
-                        <td>
-                            <%= p.body %>
+                            <%= p.memo %>
                         </td>
                         <td>
                             <%= link_to "Show", user_posts_path(u.id), class: "#" %>

@@ -21,13 +21,25 @@ Rails.application.routes.draw do
   resources :users do
     resources :follows
     resources :followers
-    resources :posts
-    resources :trainings
+    resources :posts do
+      resources :trainings do
+        resources :loads
+      end
+    end
   end
-  
-  resources :menus
+
+
+  resources :trainings do
+    resources :loads
+  end
+
+  resources :menus do
+    resources :loads
+  end
+
   resources :types
   resources :parts
+  resources :loads
 
   post 'users/user_id/posts' => 'post#create', as: "aaa"
   post '/users/:user_id/posts/:id' => 'post#destroy', as: "bbb"

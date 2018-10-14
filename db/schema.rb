@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_11_110318) do
+ActiveRecord::Schema.define(version: 2018_10_13_082416) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -39,7 +39,8 @@ ActiveRecord::Schema.define(version: 2018_10_11_110318) do
   end
 
   create_table "loads", force: :cascade do |t|
-    t.integer "menu_id"
+    t.integer "training_id"
+    t.integer "post_id"
     t.integer "times"
     t.float "load"
     t.float "distance"
@@ -51,7 +52,7 @@ ActiveRecord::Schema.define(version: 2018_10_11_110318) do
   create_table "menus", force: :cascade do |t|
     t.string "name"
     t.integer "part_id"
-    t.integer "type"
+    t.integer "type_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -73,11 +74,13 @@ ActiveRecord::Schema.define(version: 2018_10_11_110318) do
   end
 
   create_table "trainings", force: :cascade do |t|
-    t.integer "post_id"
     t.integer "menu_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "types", force: :cascade do |t|
     t.string "name"
-    t.integer "part_id"
-    t.integer "type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,0 +1,34 @@
+<h1>トレーニングの登録</h1>
+
+<% case @type.type_id
+    when 1 %>
+        <%= form_for @load do |t| %>
+            <%= t.label "負荷" %><br>
+            <%= t.number_field :load, min:0 %><br>
+            <%= t.label "回数" %><br>
+            <%= t.number_field :times, min:0 %><br>
+            <%= t.submit "登録" %>
+        <% end %>
+
+    <% when 2 %>
+        <%= form_for @load do |t| %>
+            <%= t.label "回数" %><br>
+            <%= t.number_field :times, min:0 %><br>
+            <%= t.submit "登録" %>
+        <% end %>
+
+    <% when 3 %>
+        <%= form_for @load do |t| %>
+            <%= t.label "時間" %><br>
+            <%= t.number_field :time, min:0 %><br>
+            <%= t.submit "登録" %>
+        <% end %>
+
+    <% when 4 %>
+        <%= form_for @load do |t| %>
+            <%= t.label "距離" %><br>
+            <%= t.number_field :distance, min:0 %><br>
+            <%= t.submit "登録" %>
+        <% end %>
+
+<% end %>

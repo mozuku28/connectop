@@ -1,1 +1,9 @@
 <h1>Menus#index</h1>
+<% @menu.each do |m| %>
+<ul>
+    
+</ul>
+<li><%= link_to m.name, new_menu_load_path(m.id) %></li>
+<li><%= link_to "edit", edit_menu_path(m.id) %></li>
+<li><%= link_to "delete", menu_path(m.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></li>
+<% end %>

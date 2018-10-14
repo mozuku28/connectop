@@ -8,9 +8,8 @@ class User < ApplicationRecord
 
   attachment :image
   has_many :posts
-  has_many :follow
-  has_many :follower
-  has_many :menu
-  has_many :training
+  has_many :follows
+  has_many :followers
+  has_many :menus
 
 end
