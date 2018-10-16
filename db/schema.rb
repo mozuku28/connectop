@@ -50,10 +50,8 @@ ActiveRecord::Schema.define(version: 2018_10_13_082416) do
   end
 
   create_table "menus", force: :cascade do |t|
-    t.string "name"
-    t.integer "part_id"
-    t.integer "type_id"
-    t.integer "user_id"
+    t.integer "training_id"
+    t.string "load"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -66,7 +64,6 @@ ActiveRecord::Schema.define(version: 2018_10_13_082416) do
 
   create_table "posts", force: :cascade do |t|
     t.string "memo"
-    t.integer "menu_id"
     t.integer "user_id"
     t.text "image_id"
     t.datetime "created_at", null: false
@@ -74,8 +71,8 @@ ActiveRecord::Schema.define(version: 2018_10_13_082416) do
   end
 
   create_table "trainings", force: :cascade do |t|
-    t.integer "menu_id"
-    t.integer "user_id"
+    t.integer "post_id"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

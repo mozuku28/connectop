@@ -1,0 +1,20 @@
+<%= form_for @post do |f| %>
+    <div class="field row">
+    <%= f.label :meno, "memo" %>
+    <%= f.text_field :memo %>
+    </div>
+    <div class="field row">
+        <%= f.attachment_field :image, class: "user_image" %>
+    </div>
+  <h3>Trainings</h3>
+  <div id="trainings">
+    <%= f.fields_for :trainings do |training| %>
+      <%= render 'posts/training_fields', f: training %>
+    <% end %>
+    <div id="links">
+
+      <%= link_to_add_association 'add training',f, :trainings %>
+    </div>
+    <%= f.submit %>
+  </div>
+<% end %>

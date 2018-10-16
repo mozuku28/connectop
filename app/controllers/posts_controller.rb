@@ -11,6 +11,8 @@ class PostsController < ApplicationController
 
     def new
         @post = Post.new
+        @training = @post.trainings.build
+        @menu = @training.menus.build
     end
 
     def create
@@ -35,7 +37,19 @@ class PostsController < ApplicationController
 
     private
         def post_params
-            params.require(:post).permit(:memo, :user, :image)
+            params.require(:post).permit(
+                                    :memo,
+                                    :user,
+                                    :image,
+                                    trainings_attributes:[
+                                        :id,
+                                        :name,
+                                        _destroy,
+                                        menus_attributes:[
+                                            :id,
+                                            :description,
+                                            :_destroy
+                                            ]])
         end
 
 end
