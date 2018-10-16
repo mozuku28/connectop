@@ -11,5 +11,6 @@ class User < ApplicationRecord
   has_many :follows
   has_many :followers
   has_many :menus
+  has_many :loads
 
 end

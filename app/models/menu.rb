@@ -3,6 +3,7 @@ class Menu < ApplicationRecord
     has_one :training
     has_many :parts
     has_many :types
+    has_many :loads
 end
 
 

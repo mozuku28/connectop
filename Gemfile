@@ -70,9 +70,17 @@ gem "refile-mini_magick"
 gem 'kaminari'
 gem 'bootstrap-sass'
 gem 'enum_help'
+gem 'cocoon'
 
 # add to development
-gem 'pry-rails'
-gem 'seed-fu'
-gem 'pry-byebug'
+gem 'pry-rails' # debug用のGem。任意の場所に binding pry でストップ。
+gem 'seed-fu' #seed管理
+gem 'pry-byebug' 
 gem 'pry-doc'
+
+gem 'hirb'   # モデルの出力結果を表形式で表示するGem
+gem 'hirb-unicode' # 日本語などマルチバイト文字の出力時の出力結果のずれに対応
+
+group :development, :test do
+  gem 'pry-rails'  # irbの代わりにpryにする
+end

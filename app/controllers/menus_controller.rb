@@ -16,8 +16,9 @@ class MenusController < ApplicationController
     @menu.save
     training = Training.new
     training.menu_id = @menu.id
+    training.user_id = current_user.id
     training.save
-    redirect_to trainings_path
+    redirect_to menus_path
   end
 
 
@@ -44,7 +45,7 @@ class MenusController < ApplicationController
     end
 
     def training_params
-      params.require(:training).permit(:menu_id)
+      params.require(:training).permit(:menu_id, :user_id)
     end
 
 end

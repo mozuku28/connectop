@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  get 'admins/index'
   get 'parts/index'
   get 'menus/index'
   get 'loads/index'
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
   resources :parts
   resources :loads
 
+  post 'menu_loads_path(@menu)' => 'post#create', as: "ccc"
   post 'users/user_id/posts' => 'post#create', as: "aaa"
   post '/users/:user_id/posts/:id' => 'post#destroy', as: "bbb"
 

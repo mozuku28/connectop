@@ -8,8 +8,11 @@
         <%= f.text_field :memo, class: "col-xs-12 post_title", id: "post_title" %>
     </div>
     <div>
-        <%= link_to "今日のトレーニング", trainings_path %>
+        <%= link_to "今日のトレーニング", menus_path %>
     </div>
+    <div>
+        <%= f.select :menu_id, Menu.all.map {|o| [o.name, o.id]} ,class: 'form-control'%><br></div>
+        <% %>
     <div>
         <%= link_to "一覧", user_posts_path %>
     </div>

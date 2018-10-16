@@ -1,2 +1,12 @@
 <h1>Loads#index</h1>
-<p>Find me in app/views/loads/index.html.erb</p>
+<p>トレーニングの一覧</p>
+
+<% @load.each do |f| %>
+<ul>
+    <li><%= f.created_at %></li>
+    <li><%= f.times %></li>
+    <li><%= f.menu_id %></li>
+</ul>
+<% end %>
+
+ 

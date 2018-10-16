@@ -1,8 +1,8 @@
 <h1>トレーニングの登録</h1>
 
-<% case @type.type_id
+<% case @menu.type_id
     when 1 %>
-        <%= form_for @load do |t| %>
+        <%= form_for(@load, url: menu_loads_path(@menu) html: {method: 'POST'}) do |t| %>
             <%= t.label "負荷" %><br>
             <%= t.number_field :load, min:0 %><br>
             <%= t.label "回数" %><br>

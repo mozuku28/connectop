@@ -5,10 +5,14 @@ class UsersController < ApplicationController
     @post = Post.new
     @user = current_user
     @follows = Follow.where(user_id: current_user.id)
-    @users = []
-    @follows.each do |f|
-        @users << User.find(f.follow_user_id)
+    # @users = []
+    # @follows.each do |f|
+    #     @users << User.find(f.follow_user_id)
+    # end
+    @users = @follows.map do |f|
+      User.find(f.follow_user_id)
     end
+    # 上記インスタンス化はmapで書き換え可能。
   end
 
   def show
