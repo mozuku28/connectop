@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'relationships/create'
+  get 'relationships/destroy'
   get 'admins/index'
   get 'parts/index'
   get 'menus/index'
@@ -20,6 +22,11 @@ Rails.application.routes.draw do
   }
 
   resources :users do
+
+    member do
+      get :following, :followers
+    end
+
     resources :follows
     resources :followers
     resources :posts do
@@ -28,6 +35,9 @@ Rails.application.routes.draw do
       end
     end
   end
+  
+  resources :relationships, only: [:create, :destroy]
+
 
 
   resources :trainings do

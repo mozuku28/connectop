@@ -13,11 +13,24 @@
             <th>introduction</th>
             <th><%= user.introduction %></th>
         </tr>
+        <tr>
+            <th><%= render 'users/stats_follow' %></th>
+        </tr>
+        <tr>
+            <th><%= render 'users/stats_follower' %></th>
+        </tr>
+        <tr>
+            <th><%= render 'users/follow_form' %></th>
+        </tr>
     </tbody>
 </table>
 
 <% if user == current_user %>
-    <div class="row">
+    <div class="row" >
         <%= link_to "", edit_user_path(user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{current_user.id}" %>
+    </div>
+<% else %>
+    <div>
+        <div class="row" ><%= link_to "フォロー", edit_user_path(user.id), class: "col-xs-12 btn btn-default glyphicon edit_user_#{current_user.id}" %></div>
     </div>
 <% end %>

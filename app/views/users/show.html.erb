@@ -20,15 +20,8 @@
     <div>投稿数</div>
     <%= @post %>
     <br>
-    <div>フォロー</div>
-    <%= link_to user_follows_path(@user.id) do %>
-        <%= @follow %>
-    <% end %>
-    <br>
-    <div>フォロワー</div>
-    <%= link_to user_followers_path(@user.id) do %>
-        <%= @follower %>
-    <% end %>
+    <div><%= render 'stats_follow' %></div>
+    <div><%= render 'stats_follower' %></div>
 </div>
 
 
