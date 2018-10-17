@@ -1,20 +1,25 @@
-<%= form_for @post do |f| %>
-    <div class="field row">
+<%= form_for(@post, url: user_posts_path, html: {method: 'POST'}) do |f| %>
+  <div class="field">
     <%= f.label :meno, "memo" %>
     <%= f.text_field :memo %>
-    </div>
-    <div class="field row">
-        <%= f.attachment_field :image, class: "user_image" %>
-    </div>
+  </div>
+
+  <div class="field">
+      <%= f.attachment_field :image, class: "user_image" %>
+  </div>
+
+
   <h3>Trainings</h3>
+
   <div id="trainings">
     <%= f.fields_for :trainings do |training| %>
-      <%= render 'posts/training_fields', f: training %>
+      <%= render 'training_fields', f: training %>
     <% end %>
-    <div id="links">
 
+    <div id="links">
       <%= link_to_add_association 'add training',f, :trainings %>
     </div>
+
     <%= f.submit %>
   </div>
 <% end %>

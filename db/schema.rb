@@ -39,19 +39,12 @@ ActiveRecord::Schema.define(version: 2018_10_13_082416) do
   end
 
   create_table "loads", force: :cascade do |t|
-    t.integer "menu_id"
-    t.integer "user_id"
-    t.integer "times"
-    t.float "load"
-    t.float "distance"
-    t.time "time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "training_id"
+    t.string "load"
   end
 
   create_table "menus", force: :cascade do |t|
-    t.integer "training_id"
-    t.string "load"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -72,7 +65,7 @@ ActiveRecord::Schema.define(version: 2018_10_13_082416) do
 
   create_table "trainings", force: :cascade do |t|
     t.integer "post_id"
-    t.string "name"
+    t.integer "menu_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

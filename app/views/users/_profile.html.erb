@@ -1,0 +1,23 @@
+<h2>User info</h2>
+<table class="table">
+    <tbody>
+        <tr>
+            <th>image</th>
+            <th><%= attachment_image_tag user, :image, format:'jpeg', fallback: "no_image.jpg", class:"user-image" %></th>
+        </tr>
+        <tr>
+            <th>name</th>
+            <th><%= user.name %></th>
+        </tr>
+        <tr>
+            <th>introduction</th>
+            <th><%= user.introduction %></th>
+        </tr>
+    </tbody>
+</table>
+
+<% if user == current_user %>
+    <div class="row">
+        <%= link_to "", edit_user_path(user.id), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench edit_user_#{current_user.id}" %>
+    </div>
+<% end %>

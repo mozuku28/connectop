@@ -1,0 +1,16 @@
+<div class="nested-fields well well-compact">
+  <div class="form-group">
+    <%= f.select :menu_id, Menu.all.map {|o| [o.name, o.id]} ,class: 'form-control'%>
+    <%= link_to_remove_association "remove training", f %>
+  </div>
+
+  <div class="items">
+    <%= f.fields_for :loads do |load| %>
+      <%= render 'load_fields', f: load %>
+    <%end%>
+    <div class="links">
+      <%= link_to_add_association "add load", f, :loads %>
+    </div>
+  </div>
+</div>
+ 

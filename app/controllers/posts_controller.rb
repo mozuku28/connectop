@@ -12,7 +12,7 @@ class PostsController < ApplicationController
     def new
         @post = Post.new
         @training = @post.trainings.build
-        @menu = @training.menus.build
+        @load = @training.loads.build
     end
 
     def create
@@ -43,11 +43,11 @@ class PostsController < ApplicationController
                                     :image,
                                     trainings_attributes:[
                                         :id,
-                                        :name,
-                                        _destroy,
-                                        menus_attributes:[
+                                        :menu_id,
+                                        :_destroy,
+                                        loads_attributes:[
                                             :id,
-                                            :description,
+                                            :load,
                                             :_destroy
                                             ]])
         end
