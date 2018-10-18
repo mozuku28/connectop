@@ -1,0 +1,34 @@
+<h1>users</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>image</th>
+            <th>name</th>
+            <th colspan = "3" >introduction</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @users.each do |user| %>
+        
+        <tr>
+            <td>
+                <%= attachment_image_tag user, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg"  %>
+            </td>
+            <td>
+                <%= user.name %>
+            </td>
+            <td>
+                <%= user.introduction %>
+            </td>
+            <td>
+                <%= link_to "show", admins_user_path(user.id), class: "#" %>
+            </td>
+            <% unless user.deleted_at.nil? %>
+                <td>
+                    退会済み
+                </td>
+            <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+</table>

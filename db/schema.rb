@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 2018_10_17_074040) do
     t.string "introduction"
     t.float "height"
     t.float "weight"
+    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true

@@ -1,0 +1,30 @@
+<h1>ポストのエディットだよ</h1>
+
+
+<tbody>
+    <tr>
+        <td>
+            <%= @user.name %>
+        </td>
+        <td>
+            <%= attachment_image_tag @user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg" %>
+        </td>
+        <td>
+            <%= attachment_image_tag @post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg" %>
+        </td>
+        <td>
+            <%= @post.memo %>
+        </td>
+        <td>
+            <% @trainings.each do |training| %>
+                <% training.loads.each do |load| %>
+                 <td><%= Menu.find(training.menu_id).name %></td>
+                 <td><%= load.load%></td>
+                <% end %>
+            <% end %>
+        </td>
+        <td>
+            <%= link_to "delete", admins_user_post_path(@user.id, @post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        </td>
+    </tr>
+</tbody>

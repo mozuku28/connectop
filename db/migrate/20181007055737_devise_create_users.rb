@@ -38,6 +38,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :introduction
       t.float :height
       t.float :weight
+      t.datetime :deleted_at
 
       t.timestamps null: false
     end

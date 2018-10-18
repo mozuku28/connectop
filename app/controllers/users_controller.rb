@@ -32,6 +32,12 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.soft_delete
+    redirect_to users_path
+  end
+
   def following
     @user  = User.find(params[:id])
     @users = @user.followings

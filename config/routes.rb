@@ -21,6 +21,14 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  get 'admins/' => 'admins#index', as: :admins
+
+  namespace :admins do
+    resources :users do
+      resources :posts
+    end
+  end
+
   resources :users do
 
     member do
