@@ -2,24 +2,13 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   
   def index
-    @post = Post.new
+    @post = Post.where(user_id: current_user.id)
     @user = current_user
-    @follows = Follow.where(user_id: current_user.id)
-    # @users = []
-    # @follows.each do |f|
-    #     @users << User.find(f.follow_user_id)
-    # end
-    @users = @follows.map do |f|
-      User.find(f.follow_user_id)
-    end
-    # 上記インスタンス化はmapで書き換え可能。
   end
 
   def show
     @user = User.find(params[:id])
     @post = Post.where(user_id: @user.id).count
-    @follow = Follow.where(user_id: @user.id).count
-    @follower = Follower.where(follower_user_id: @user.id).count
   end
 
   def edit
@@ -34,8 +23,8 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
-    @user.soft_delete
-    redirect_to users_path
+    @user.destroy
+    redirect_to root_path
   end
 
   def following

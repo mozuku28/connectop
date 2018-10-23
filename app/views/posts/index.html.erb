@@ -1,35 +1,68 @@
-<h1>投稿の一覧</h1>
-
 <div class="row">
+
     <div class="col-xs-3">
         <%= render 'users/profile', user: @user %>
-<% if false%>
-
-            <h2>New post</h2>
-            <%= form_for(@post, url: user_posts_path, html: {method: 'POST'}) do |f| %>
-                <div class="field row">
-                    <%= f.attachment_field :image, class: "user_image" %>
-                </div>
-                <div class="field row">
-                    <label for="title">たーーいとる</label><br>
-                    <%= f.text_field :title, class: "col-xs-12 post_title", id: "post_title" %>
-                </div>
-                <div class="field row">
-                    <label for="body">ぼでーーーーー！！！！！！</label><br>
-                    <%= f.text_area :body, class: "col-xs-12 post_body", id: "post_body" %>
-                </div>
-                <div class="actions row">
-                    <%= f.submit "Create Post", class: "btn btn-primary col-xs-12" %>
-                </div>
-            <% end %>
-
-<% end %>
-
     </div>
 
     <div class="col-xs-9">
-    <h2>Posts</h2>
-        <table class="table">
+        <% @users.each do |user| %>
+            <% user.posts.each do |post| %>
+                <% post.trainings.each do |training| %>
+                    <% training.loads.each do |load| %>
+                        <div class="row border-bottom">
+
+                            <div class="col-xs-2 text-center">
+                                <%= attachment_image_tag user, :image, size: "70x70", format: 'jpeg', fallback: "no_image.jpg", class: "attachment fallback img-circle img-border" %>
+                            </div>
+
+                            <div class="col-xs-10">
+                                <div>
+                                    <b><%= link_to user.name, user_posts_path(user.id), class: "#" %></b>
+                                </div>
+                                <div>
+                                    <div><%= attachment_image_tag post, :image, size: "500x500", format: 'jpeg', class: "attachment post_image fallback" %></div>
+                                </div>
+                                <div class="post-memo">
+                                    <div><%= post.memo %></div>
+                                </div>
+                                <div class="training-menu">
+                                    <%= Menu.find(training.menu_id).name %>  ：  <%= load.load %>
+                                </div>
+                                <% if user.id == current_user.id %>
+                                    <div>
+                                        <%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %>
+                                    </div>
+                                    <div>
+                                        <%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                                    </div>
+                                <% end %>
+                            </div>
+
+                        </div>
+                    <% end %>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+
+<table class="table">
             <thead>
                 <tr>
                     <th>UserName</th>
@@ -41,39 +74,64 @@
                 </tr>
             </thead>
             <tbody>
-
-            <% @user.posts.each do |post| %>
-                <% post.trainings.each do |training| %>
-                    <% training.loads.each do |load| %>
-                        <tr>
-                            <td>
-                                <%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %>
-                            </td>
-                            <td>
-                                <%= post.memo %>
-                            </td>
-                            <td>
-                                <%= Menu.find(training.menu_id).name %>
-                            </td>
-                            <td>
-                                <%= load.load %>
-                            </td>
-                            <td>
-                                <%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %>
-                            </td>
-                            <td>
-                                <%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-                            </td>
-
-                        </tr>
+                <% @users.each do |user| %>
+                    <% user.posts.each do |post| %>
+                        <% post.trainings.each do |training| %>
+                            <% training.loads.each do |load| %>
+                                <tr>
+                                    <%= link_to user_posts_path(user.id) do %>
+                                        <td><%= attachment_image_tag user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg"  %></td>
+                                        <td><%= user.name %></td>
+                                        <td><%= user.introduction %></td>
+                                        <td><%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %></td>
+                                        <td><%= post.memo %></td>
+                                        <td><%= Menu.find(training.menu_id).name %></td>
+                                        <td><%= load.load %></td>
+                                        <td><%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %></td>
+                                        <td><%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+                                    <% end %>
+                                </tr>
+                            <% end %>
+                        <% end %>
                     <% end %>
                 <% end %>
-            <% end %>
-
             </tbody>
         </table>
-    </div>
 
-</div>
+<% end %>
 
 
+
+
+
+
+
+
+
+<% if false %>
+
+<tbody>
+    <% @users.each do |user| %>
+        <% user.posts.each do |post| %>
+            <% post.trainings.each do |training| %>
+                <% training.loads.each do |load| %>
+                    <tr>
+                        <%= link_to user_posts_path(user.id) do %>
+                            <td><%= attachment_image_tag user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg"  %></td>
+                            <td><%= user.name %></td>
+                            <td><%= user.introduction %></td>
+                            <td><%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %></td>
+                            <td><%= post.memo %></td>
+                            <td><%= Menu.find(training.menu_id).name %></td>
+                            <td><%= load.load %></td>
+                            <td><%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %></td>
+                            <td><%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+                        <% end %>
+                    </tr>
+                <% end %>
+            <% end %>
+        <% end %>
+    <% end %>
+</tbody>
+
+<% end %>

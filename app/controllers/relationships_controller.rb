@@ -1,10 +1,10 @@
 class RelationshipsController < ApplicationController
 
-    def create
+  def create
     @user = User.find(params[:relationship][:following_id])
     current_user.follow!(@user)
     redirect_to user_posts_path(@user.id)
-    end
+  end
 
   def destroy
     @user = Relationship.find(params[:id]).following

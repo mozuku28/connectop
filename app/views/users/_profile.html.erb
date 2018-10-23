@@ -1,3 +1,49 @@
+<div class="box-container">
+    <div class="row">
+        <div class="col-xs-4" ><%= attachment_image_tag user, :image,  size: "70x70", format:'jpeg', fallback: "no_image.jpg", class:"img-circle user-image img-border" %></div>
+        <div class="col-xs-8">
+            <b><%= user.name %></b>
+            <div><%= render 'users/follow_form' %></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-4">
+            <div>投稿数</div>
+            <div><%= Post.where(user_id: user.id).count %></div>
+        </div>
+        <div class="col-xs-4">
+            <%= render 'users/stats_follow' %>
+        </div>
+        <div class="col-xs-4">
+            <%= render 'users/stats_follower' %>
+        </div>
+    </div>
+    <div class="row center-block">
+        <% if user.id == current_user.id %>
+            <%= link_to "", edit_user_path(current_user), class: "col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
+        <% end %>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+
+
+
+
 <h2>User info</h2>
 <table class="table">
     <tbody>
@@ -33,4 +79,9 @@
     <div>
         <div class="row" ><%= link_to "フォロー", edit_user_path(user.id), class: "col-xs-12 btn btn-default glyphicon edit_user_#{current_user.id}" %></div>
     </div>
+<% end %>
+
+
+
+
 <% end %>

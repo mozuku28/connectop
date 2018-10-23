@@ -60,10 +60,10 @@ Rails.application.routes.draw do
   resources :parts
   resources :loads
 
-  post 'menu_loads_path(@menu)' => 'post#create', as: "ccc"
-  post 'users/user_id/posts' => 'post#create', as: "aaa"
-  post '/users/:user_id/posts/:id' => 'post#destroy', as: "bbb"
 
+  post 'users/:user_id/posts' => 'posts#create', as: "aaa"
+  delete '/users/:user_id/posts/:id' => 'posts#destroy', as: "bbb"
+  post '/users/:user_id/posts/:id' => 'posts#update', as: "ccc"
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -1,14 +1,27 @@
 <h1>ポストのエディットだよ</h1>
 
-<%= form_for(@post, url: user_posts_path, html: {method: 'POST'}) do |f| %>
-    <div class="field row">
-        <%= f.attachment_field :image, class: "user_image" %>
+<%= form_for(@post, url: ccc_path(@user.id, @post.id), html: {method: 'POST'}) do |f| %>
+    <div class="field">
+    <%= f.label :meno, "memo" %>
+    <%= f.text_field :memo %>
+  </div>
+
+  <div class="field">
+      <%= f.attachment_field :image, class: "user_image" %>
+  </div>
+
+
+  <h3>Trainings</h3>
+
+  <div id="trainings">
+    <%= f.fields_for :trainings do |training| %>
+      <%= render 'training_fields', f: training %>
+    <% end %>
+
+    <div id="links">
+      <%= link_to_add_association 'add training',f, :trainings %>
     </div>
-    <div class="field row">
-        <label for="title">memo---</label><br>
-        <%= f.text_field :memo, class: "col-xs-12 post_title", id: "post_title" %>
-    </div>
-    <div class="actions row">
-        <%= f.submit "Create Post", class: "btn btn-primary col-xs-12" %>
-    </div>
+
+    <%= f.submit %>
+  </div>
 <% end %>

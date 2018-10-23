@@ -3,7 +3,11 @@ class PostsController < ApplicationController
 
     def index
         @user = User.find(params[:user_id])
-        @post = Post.new
+        @users = []
+        @user.followings.each do |f|
+            @users << User.find(f.id)
+        end
+        @users << User.find(@user.id)
     end
 
     def show
@@ -13,21 +17,33 @@ class PostsController < ApplicationController
         @post = Post.new
         @training = @post.trainings.build
         @load = @training.loads.build
+        @user = User.find(params[:user_id])
     end
 
     def create
         # render plain: params[:post].inspect
         @post = Post.new(post_params)
         @post.user_id = current_user.id
-        @post.save
-        redirect_to user_posts_path(current_user.id)
+        if @post.save
+            redirect_to user_posts_path(current_user.id)
+        else
+            @training = @post.trainings.build
+            @load = @training.loads.build
+            @user = User.find(params[:user_id])
+            render 'new'
+        end
     end
 
     def edit
         @post = Post.find(params[:id])
+        @user = User.find(params[:user_id])
     end
 
-
+    def update
+        @post = Post.find(params[:id])
+        @post.update(post_params)
+        redirect_to user_posts_path(current_user.id)
+    end
 
     def destroy
         post = Post.find(params[:id])
