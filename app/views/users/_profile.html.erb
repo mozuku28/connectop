@@ -1,6 +1,6 @@
 <div class="box-container">
     <div class="row">
-        <div class="col-xs-4" ><%= attachment_image_tag user, :image,  size: "70x70", format:'jpeg', fallback: "no_image.jpg", class:"img-circle user-image img-border" %></div>
+        <div class="col-xs-4" ><%= attachment_image_tag user, :image,  size: "70x70", format:'jpeg', fallback: "/images/no_image.jpg", class:"img-circle user-image img-border" %></div>
         <div class="col-xs-8">
             <b><%= user.name %></b>
             <div><%= render 'users/follow_form' %></div>
@@ -49,7 +49,7 @@
     <tbody>
         <tr>
             <th>image</th>
-            <th><%= attachment_image_tag user, :image, format:'jpeg', fallback: "no_image.jpg", class:"user-image" %></th>
+            <th><%= attachment_image_tag user, :image, format:'jpeg', fallback: "/images/no_image.jpg", class:"user-image" %></th>
         </tr>
         <tr>
             <th>name</th>

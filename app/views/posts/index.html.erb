@@ -12,7 +12,7 @@
                         <div class="row border-bottom">
 
                             <div class="col-xs-2 text-center">
-                                <%= attachment_image_tag user, :image, size: "70x70", format: 'jpeg', fallback: "no_image.jpg", class: "attachment fallback img-circle img-border" %>
+                                <%= attachment_image_tag user, :image, size: "70x70", format: 'jpeg', fallback: "/images/no_image.jpg", class: "attachment fallback img-circle img-border" %>
                             </div>
 
                             <div class="col-xs-10">
@@ -80,7 +80,7 @@
                             <% training.loads.each do |load| %>
                                 <tr>
                                     <%= link_to user_posts_path(user.id) do %>
-                                        <td><%= attachment_image_tag user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg"  %></td>
+                                        <td><%= attachment_image_tag user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg"  %></td>
                                         <td><%= user.name %></td>
                                         <td><%= user.introduction %></td>
                                         <td><%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %></td>
@@ -117,7 +117,7 @@
                 <% training.loads.each do |load| %>
                     <tr>
                         <%= link_to user_posts_path(user.id) do %>
-                            <td><%= attachment_image_tag user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg"  %></td>
+                            <td><%= attachment_image_tag user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg"  %></td>
                             <td><%= user.name %></td>
                             <td><%= user.introduction %></td>
                             <td><%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %></td>

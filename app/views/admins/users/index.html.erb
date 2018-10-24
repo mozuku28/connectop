@@ -12,7 +12,7 @@
         
         <tr>
             <td>
-                <%= attachment_image_tag user, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg"  %>
+                <%= attachment_image_tag user, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg"  %>
             </td>
             <td>
                 <%= user.name %>

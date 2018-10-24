@@ -7,10 +7,10 @@
             <%= @user.name %>
         </td>
         <td>
-            <%= attachment_image_tag @user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg" %>
+            <%= attachment_image_tag @user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg" %>
         </td>
         <td>
-            <%= attachment_image_tag @post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "no_image.jpg" %>
+            <%= attachment_image_tag @post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg" %>
         </td>
         <td>
             <%= @post.memo %>

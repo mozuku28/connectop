@@ -1,7 +1,7 @@
 <div class="row">
 
 <%= form_for @user do |f| %>
-        <label><%= attachment_image_tag @user, :image, size: "100x100", format: 'jpg', class: "attachment user profile_image fallback", fallback: "no_image.jpg" %></label>
+        <label><%= attachment_image_tag @user, :image, size: "100x100", format: 'jpg', class: "attachment user profile_image fallback", fallback: "/images/no_image.jpg" %></label>
         <%= f.attachment_field :image, class: "user_image" %>
         <br>
 
@@ -39,5 +39,5 @@
     :image, size:"50x50",  ← 「:fill」でなく「size」で指定。（かけるはえっくす）
     format: 'jpg',
     class: "attachment user profile_image fallback",
-    fallback: "no_image.jpg"
+    fallback: "/images/no_image.jpg"
 <% end %>
