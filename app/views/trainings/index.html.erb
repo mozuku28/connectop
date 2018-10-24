@@ -1,0 +1,10 @@
+<h1>Trainings#index</h1>
+<%= link_to "新規トレーニング", new_menu_path %>
+
+<% @trainings.each do |t| %>
+
+        <ul>
+            <li><%= link_to Menu.find(t.menu_id).name, new_training_load_path(t.id) %></li>
+        </ul>
+
+<% end %>

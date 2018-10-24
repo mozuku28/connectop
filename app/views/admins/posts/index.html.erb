@@ -1,0 +1,87 @@
+<h1>postのインデックスだよ</h1>
+
+<h2>Posts</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>UserImages</th>
+                    <th>PostImage</th>
+                    <th>Memo</th>
+                    <th>Training</th>
+                    <th>Load</th>
+                    <th colspan = "7" ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @users.each do |user| %>
+                    <% user.posts.each do |post| %>
+                        <% post.trainings.each do |training| %>
+                            <% training.loads.each do |load| %>
+                            <tr>
+                                <td>
+                                    <%= user.name %>
+                                </td>
+                                <td>
+                                    <%= attachment_image_tag user, :image, size: "50x50", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg" %>
+                                </td>
+                                <td>
+                                    <%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg" %>
+                                </td>
+                                <td>
+                                    <%= post.memo %>
+                                </td>
+                                <td>
+                                    <%= Menu.find(training.menu_id).name %>
+                                </td>
+                                <td>
+                                    <%= load.load %>
+                                </td>
+                                
+                            </tr>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+
+
+<% if false %>
+
+<% @users.each do |user| %>
+                <% user.posts.each do |post| %>
+                    <% post.trainings.each do |training| %>
+                        <% training.loads.each do |load| %>
+                            <tr>
+                                <td>
+                                    <%= user.name %>
+                                </td>
+                                <td>
+                                    <%= attachment_image_tag user, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg" %>
+                                </td>
+                                <td>
+                                    <%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback", fallback: "/images/no_image.jpg" %>
+                                </td>
+                                <td>
+                                    <%= post.memo %>
+                                </td>
+                                <td>
+                                    <%= Menu.find(training.menu_id).name %>
+                                </td>
+                                <td>
+                                    <%= load.load %>
+                                </td>
+                                <td>
+                                    <%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %>
+                                </td>
+                                <td>
+                                    <%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            <% end %>
+
+<% end %>

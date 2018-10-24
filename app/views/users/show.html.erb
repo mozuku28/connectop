@@ -1,7 +1,5 @@
-<h1>Users#show</h1>
-
 <div class = "row" >
-    <div><%= attachment_image_tag @user, :image, size: "50x50", format: 'jpeg', class: "attachment user profile_image fallback", fallback: "no_image.jpg" %></div>
+    <div><%= attachment_image_tag @user, :image, size: "50x50", format: 'jpeg', class: "attachment user profile_image fallback", fallback: "/images/no_image.jpg" %></div>
     <div>名前</div>
     <div><%= @user.name %></div>
     <br>
@@ -20,12 +18,11 @@
     <div>投稿数</div>
     <%= @post %>
     <br>
-    <div>フォロー</div>
-    
-    <br>
-    <div>フォロワー</div>
-    
+    <div><%= render 'stats_follow' %></div>
+    <div><%= render 'stats_follower' %></div>
+    <div><%= link_to "withdrawal", user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></div>
 </div>
+
 
 
 
@@ -33,7 +30,7 @@
 <% if false %>
 <% @posts.each do |post| %>
     <div>
-    <%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpeg', class: "attachment user profile_image fallback", fallback: "no_image.jpg" %>
+    <%= attachment_image_tag @user, :image, :fill, 50, 50, format: 'jpeg', class: "attachment user profile_image fallback", fallback: "/images/no_image.jpg" %>
     <%= link_to post.book_title, book_path(post.id), class: "book_#{post.id}" %>
     <%= post.book_opinion %>
     </div>

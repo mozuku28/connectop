@@ -1,0 +1,38 @@
+<%= form_for(@post, url: user_posts_path, html: {method: 'POST'}) do |f| %>
+
+
+<% if @post.errors.any? %>
+  <h2><%= @post.errors.count %>件のエラーが発生しました</h2>
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
+  <div class="field">
+    <%= f.label :memo, "memo" %>
+    <%= f.text_area :memo, class: "form-control" %>
+  </div>
+
+  <div class="field">
+      <%= f.attachment_field :image, class: "user_image" %>
+  </div>
+
+
+  <h3>Trainings</h3>
+
+  <div id="trainings">
+    <%= f.fields_for :trainings do |training| %>
+      <%= render 'training_fields', f: training %>
+    <% end %>
+
+    <div id="links">
+      <%= link_to_add_association 'add training',f, :trainings %>
+    </div>
+
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,10 @@
+<% @user.followings.each do |user| %>
+<div class="row  border-bottom">
+    <%= link_to user_path(user.id) do %>
+        <div class="col-xs-1"><%= attachment_image_tag user, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback img-circle img-border", fallback: "/images/no_image.jpg"  %></div>
+        <div class="col-xs-4"><%= user.name %></div>
+        <div class="col-xs-7"><%= user.introduction %></div>
+    <% end %>
+</div>
+<% end %>
+

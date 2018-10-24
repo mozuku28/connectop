@@ -17,11 +17,11 @@
           <span><%= link_to "Connectop", root_path, class: "top_logo" %></span>
         </nav>
         <nav>
-          <ul class="nav navbar-nav navbar-right">
+          <ul class="nav navbar-nav navbar-right"><li>
             <% if user_signed_in? %>
-              <li><%= link_to " Home", root_path, class: "glyphicon glyphicon-home home" %></li>
-              <li><%= link_to " Users", user_path(current_user.id), class: "glyphicon glyphicon-user users" %></li>
-              <li><%= link_to " Books", "#", class: "glyphicon glyphicon-book books" %></li>
+              <li><%= link_to " Home", user_posts_path(current_user.id), class: "glyphicon glyphicon-home home" %></li>
+              <li><%= link_to " Users", user_path(@user.id), class: "glyphicon glyphicon-user users" %></li>
+              <li><%= link_to " New Post", new_user_post_path(current_user.id), class: "glyphicon glyphicon-comment post" %><li>
               <li><%= link_to " logout", destroy_user_session_path, class: "glyphicon glyphicon-log-out logout", method: :delete %></li>
             <% else %>
               <li><%= link_to " Home", root_path, class: "glyphicon glyphicon-home home" %></li>

@@ -1,2 +1,102 @@
-<h1>Users#index</h1>
-<p>Find me in app/views/users/index.html.erb</p>
+<div class="row">
+
+    <div class="col-xs-3">
+        <%= render 'profile', user: current_user %>
+    </div>
+
+    <div class="col-xs-9">
+        <% @user.posts.each do |post| %>
+            <% post.trainings.each do |training| %>
+                <% training.loads.each do |load| %>
+                    <div class="row border-bottom">
+                        <div class="col-xs-2 text-center">
+                            <%= attachment_image_tag @user, :image, size: "70x70", format: 'jpeg', fallback: "/images/no_image.jpg", class: "attachment fallback img-circle img-border" %>
+                        </div>
+                        <div class="col-xs-10">
+                            <div>
+                                <b><%= @user.name %></b>
+                            </div>
+                            <div>
+                                <div><%= attachment_image_tag post, :image, size: "500x500", format: 'jpeg', class: "attachment post_image fallback" %></div>
+                            </div>
+                            <div class="post-memo">
+                                <div><%= post.memo %></div>
+                            </div>
+                            <div class="training-menu">
+                                <%= Menu.find(training.menu_id).name %>  ：  <%= load.load %>
+                            </div>
+                            <% if @user.id == current_user.id %>
+                                <div>
+                                    <%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %>
+                                </div>
+                                <div>
+                                    <%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                                </div>
+                            <% end %>
+                        </div>
+                    </div>
+                <% end %>
+            <% end %>
+        <% end %>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+<% if false %>
+
+        <h2>Posts</h2>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>UserName</th>
+                    <th>UserImages</th>
+                    <th>PostImage</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th colspan = "6" ></th>
+                </tr>
+            </thead>
+            <tbody>
+                <% @user.posts.each do |post| %>
+                    <% post.trainings.each do |training| %>
+                        <% training.loads.each do |load| %>
+                            <tr>
+                                <td>
+                                    <%= @user.name %>
+                                </td>
+                                <td>
+                                    <%= attachment_image_tag @user, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %>
+                                </td>
+                                <td>
+                                    <%= attachment_image_tag post, :image, size: "100x100", format: 'jpeg', class: "attachment post profile_image fallback" %>
+                                </td>
+                                <td>
+                                    <%= post.memo %>
+                                </td>
+                                <td>
+                                    <%= Menu.find(training.menu_id).name %>
+                                </td>
+                                <td>
+                                    <%= load.load %>
+                                </td>
+                                <td>
+                                    <%= link_to "Edit", edit_user_post_path(@user.id, post.id), class: "#" %>
+                                </td>
+                                <td>
+                                    <%= link_to "delete", bbb_path(@user.id, post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                                </td>
+                            </tr>
+                        <% end %>
+                    <% end %>
+                <% end %>
+            </tbody>
+        </table>
+
+<% end %>

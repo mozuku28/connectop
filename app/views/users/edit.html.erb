@@ -1,9 +1,7 @@
-<h1>unko</h1>
-
 <div class="row">
 
 <%= form_for @user do |f| %>
-        <label><%= attachment_image_tag @user, :image, size: "100x100", format: 'jpg', class: "attachment user profile_image fallback", fallback: "no_image.jpg" %></label>
+        <label><%= attachment_image_tag @user, :image, size: "100x100", format: 'jpg', class: "attachment user profile_image fallback", fallback: "/images/no_image.jpg" %></label>
         <%= f.attachment_field :image, class: "user_image" %>
         <br>
 
@@ -13,7 +11,7 @@
         <br>
 
         <label for="introduction">Introduction</label>
-        <%= f.text_field :introduction, class: "introduction" %>
+        <%= f.text_area :introduction, class: "introduction" %>
         <br>
 
         <label for="gender">Gender</label>
@@ -29,9 +27,9 @@
         <br>
 
         <div><%= f.submit "情報更新" %><br></div>
-        <% if false %><div><%= link_to "delete", user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></div><% end %>
+        <div><%= link_to "withdrawal", user_path(@user.id), method: :delete, "data-confirm" => "本当に削除しますか？" %></div>
     </div>
-<%end%>
+<% end %>
 
 
 
@@ -41,5 +39,5 @@
     :image, size:"50x50",  ← 「:fill」でなく「size」で指定。（かけるはえっくす）
     format: 'jpg',
     class: "attachment user profile_image fallback",
-    fallback: "no_image.jpg"
+    fallback: "/images/no_image.jpg"
 <% end %>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Connectop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+
+    <header class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <nav class='nav navbar-nav navbar-left' >
+          <span><%= link_to "Connectop_admin", root_path, class: "top_logo" %></span>
+        </nav>
+        <nav>
+          <ul class="nav navbar-nav navbar-right"><li>
+            <% if admin_signed_in? %>
+              <li><%= link_to " User", admins_users_path, class: "glyphicon glyphicon-user users" %></li>
+              <li><%= link_to " Post", admins_path, class: "glyphicon glyphicon-comment post" %><li>
+              <li><%= link_to " logout", destroy_admin_session_path, class: "glyphicon glyphicon-log-out logout", method: :delete %></li>
+            <% else %>
+              <li><%= link_to " Home", root_path, class: "glyphicon glyphicon-home home" %></li>
+              <li><%= link_to " login", new_admin_session_path, class: "glyphicon glyphicon-log-in sign_in" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+    <div class='body'>
+      <div class='container'>
+        <%= yield %>
+      </div>
+      </div>
+    </main>
+
+
+    <footer>
+      <div class='container'>
+  	    <div class='row'>
+    	     <div class='col-xs-3 col-xs-offset-9'>
+    		    <p>CopyRight Mozuku28.inc</p>
+    	    </div>
+        </div>
+      </div>
+    </footer>
+
+  </body>
+
+</html>

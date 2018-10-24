@@ -1,0 +1,13 @@
+<h1>menu#new</h1>
+<%= form_for @menu do |t| %>
+<%= t.label "トレーニング名" %><br>
+<%= t.text_field :name %><br>
+
+<%= t.label "部位" %><br>
+<%= t.select :part_id, Part.all.map {|o| [o.name, o.id]} %><br>
+
+<%= t.label "タイプ" %><br>
+<%= t.select :type_id, Type.all.map {|o| [o.name, o.id]} %><br>
+
+<%= t.submit '登録' %>
+<% end %>
